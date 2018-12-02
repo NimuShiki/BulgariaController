@@ -11,6 +11,7 @@ Nimushiki/Bulgariapad/Prefab/BulgariaPadCanvasTestも配置すると便利です
 
 ## 使い方
 キャリブレーションは必須です（BulgariaPadInitializer.StartCalibration()）<br>
+ただしメッセージ表示はいい実装が出来てないのでBulgariaPadInitializerをいじって下さい<br>
 ボタンの初期位置は解像度から適当に計算する処理があります（BulgariaPadInput.ResetPosition()）<br>
 ボタンの動作はBulgariaPadInput.Buttonのbool判定を監視してもいいし、Buttonコンポーネントにくっつけても問題ないです<br>
 <br>
