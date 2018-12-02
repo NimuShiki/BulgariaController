@@ -1,7 +1,7 @@
 # BulgariaController
 ブルガリアコントローラーを使うためのSDKです
 
-##導入方法
+## 導入方法
 全部ダウンロードする
 or
 unitypackageをダウンロードしてインポートする
@@ -9,14 +9,14 @@ unitypackageをダウンロードしてインポートする
 Nimushiki/Bulgariapad/Prefab/BulgariaPadCanvasを任意のシーンに配置する
 Nimushiki/Bulgariapad/Prefab/BulgariaPadCanvasTestも配置すると便利です
 
-##使い方
+## 使い方
 キャリブレーションは必須です（BulgariaPadInitializer.StartCalibration()）
 ボタンの初期位置は解像度から適当に計算する処理があります（BulgariaPadInput.ResetPosition()）
 ボタンの動作はBulgariaPadInput.Buttonのbool判定を監視してもいいし、Buttonコンポーネントにくっつけても問題ないです
 
 Sampleシーンに実装例がありますので参考にして下さい
 
-##内訳
+## 内訳
 BulgariaPadInput　必須
 TouchUtil　必須　タッチとマウスの共通化とかしてます
 BulgariaPadInitializer　準必須　キャリブレーションしたりしてます
