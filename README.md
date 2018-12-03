@@ -43,12 +43,13 @@ BulgariaPadInput　必須<br>
 TouchUtil　必須　タッチとマウスの共通化とかしてます<br>
 BulgariaPadInitializer　準必須　キャリブレーションしたりしてます<br>
 SampleController　使い方の例<br>
-SampleViewer　BulgariaPadInputのデータを見るだけのスクリプト。BulgariaPadCanvasTestにくっついてます<br>
-ImageMover　ボタン画像の移動だけ担当
+SampleViewer　BulgariaPadInputのデータを可視化するだけのスクリプト。BulgariaPadCanvasTestにくっついてます<br>
+ImageMover　ボタン画像の移動だけ担当。なくても動くけど分かりにくい。
 
 ## 既知の問題点
 マルチタッチに対応していない
 
 ## 履歴
 2018年12月3日　ver0.0.2　バグ？修正<br>
+ unitypackageに不足していたファイルを追加<br>
 2018年12月2日　ver0.0.1　初版公開
