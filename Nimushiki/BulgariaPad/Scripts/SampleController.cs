@@ -9,6 +9,7 @@ public class SampleController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		//画面の解像度からいい感じに初期位置を決める処理、なくてもOK
 		BulgariaPadInput.ResetPosition();
 	}
 
@@ -31,7 +32,7 @@ public class SampleController : MonoBehaviour
 		}
 
 		//値を監視しないで、Buttonコンポーネントに実装してもOK
-		if (BulgariaPadInput.ButtonA) transform.RotateAround(new Vector3(0, 0, 0), new Vector3(0, 10, 0), 5);
+		if (BulgariaPadInput.ButtonA) transform.RotateAround(transform.position, new Vector3(0, 10, 0), 5);
 
 	}
 }

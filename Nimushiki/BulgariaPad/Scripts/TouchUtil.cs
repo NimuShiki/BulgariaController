@@ -28,30 +28,33 @@ namespace Nimushiki.BulgariaPad
 
 		static Vector3 GetTouchPosition()
 		{
-
-#if UNITY_EDITOR
-			if (Input.GetMouseButton(0)) return Input.mousePosition;
-#else
-			if (Input.touchCount > 0)
+			if (Application.isEditor)
 			{
-				Touch touch = Input.GetTouch(0);
-				TouchPos.x = touch.position.x;
-				TouchPos.y = touch.position.y;
-				return TouchPos;
+				if (Input.GetMouseButton(0)) return Input.mousePosition;
 			}
-#endif
+			else
+			{
+				if (Input.touchCount > 0)
+				{
+					Touch touch = Input.GetTouch(0);
+					return touch.position;
+				}
+
+			}
 			return Vector3.zero;
 		}
 
 		static int GetTouchCount()
 		{
-
 			int count = 0;
-#if UNITY_EDITOR
-			if (Input.GetMouseButton(0)) return 1;
-#else
-			count = Input.touchCount;
-#endif
+			if (Application.isEditor)
+			{
+				if (Input.GetMouseButton(0)) count = 1;
+			}
+			else
+			{
+				count = Input.touchCount;
+			}
 			return count;
 		}
 
