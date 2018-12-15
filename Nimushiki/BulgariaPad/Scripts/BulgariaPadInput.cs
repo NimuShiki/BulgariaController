@@ -9,77 +9,47 @@ namespace Nimushiki.BulgariaPad
 	{
 		public static float Vertical
 		{
-			get
-			{
-				return CalcuVertical();
-			}
+			get { return CalcuVertical(); }
 		}
 		public static float Horizontal
 		{
-			get
-			{
-				return CalcuHorizontal();
-			}
+			get { return CalcuHorizontal(); }
 		}
-
 		public static bool OnAnalogPad
 		{
-			get
-			{
-				return CheckOnAnalogPad();
-			}
+			get { return CheckOnAnalogPad(); }
 		}
-
 		private static float analogPadRadius;
-
 		public static float AnalogPadRadius
 		{
 			get { return analogPadRadius; }
 		}
-
 		private static Vector2 analogPadPos;
-
 		public static Vector2 AnalogPadPos
 		{
 			get { return analogPadPos; }
 		}
-
-
 		private static float buttonRadius;
-
 		public static float ButtonRadius
 		{
 			get { return buttonRadius; }
 		}
-
 		private static bool buttonA;
 		public static bool ButtonA
 		{
-			get
-			{
-				buttonA = CheckOnButtonA();
-				return buttonA;
-			}
+			get { return CheckOnButtonA(); }
 		}
 		private static Vector2 buttonAPos;
-
 		public static Vector2 ButtonAPosition
 		{
-			get
-			{
-				buttonB = CheckOnButtonB();
-				return buttonAPos;
-			}
+			get { return buttonAPos; }
 		}
-
 		private static bool buttonB;
-
 		public static bool ButtonB
 		{
-			get { return buttonB; }
+			get { return CheckOnButtonB(); }
 		}
 		private static Vector2 buttonBPos;
-
 		public static Vector2 ButtonBPosition
 		{
 			get { return buttonBPos; }
@@ -116,13 +86,11 @@ namespace Nimushiki.BulgariaPad
 
 		static float CalcuVertical()
 		{
-			if (!TouchUtil.TouchCount.Equals(0))
+			Vector2 pos = ReturnTouchPositionWithinRange(analogPadPos, analogPadRadius);
+			if (pos != Vector2.zero)
 			{
-				float v = 0;
-				v = TouchUtil.TouchPositions[0].y - analogPadPos.y;
-				v /= analogPadRadius;
-				v = Mathf.Clamp(v, -1, 1);
-				return v;
+				pos = (pos - analogPadPos) / analogPadRadius;
+				return Mathf.Clamp(pos.y, -1, 1);
 			}
 			return 0;
 		}

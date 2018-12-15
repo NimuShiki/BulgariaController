@@ -113,12 +113,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &57651928 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224027444321755648, guid: fc218105f722c0e45be074e94108d16b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1842708807}
 --- !u!114 &189723256 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114625735367170480, guid: fc218105f722c0e45be074e94108d16b,
     type: 2}
   m_PrefabInternal: {fileID: 1842708807}
   m_Script: {fileID: 11500000, guid: 62b094b81ffe6d641a5f5b59209e0da8, type: 3}
+--- !u!224 &325773128 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224706520508169674, guid: fc218105f722c0e45be074e94108d16b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1842708807}
+--- !u!224 &380498569 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224049516054823352, guid: fc218105f722c0e45be074e94108d16b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1842708807}
 --- !u!1 &478685966
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +610,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &614059365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1330639766211776, guid: fc218105f722c0e45be074e94108d16b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1842708807}
+--- !u!114 &614059366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614059365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a693f980f05e887419d3f630366f9dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnalogPadObj: {fileID: 380498569}
+  ButtonAObj: {fileID: 325773128}
+  ButtonBObj: {fileID: 57651928}
 --- !u!1 &676442638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,7 +1678,8 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114899023426404674, guid: fc218105f722c0e45be074e94108d16b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: fc218105f722c0e45be074e94108d16b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1849803900
@@ -1659,7 +1694,6 @@ GameObject:
   - component: {fileID: 1849803902}
   - component: {fileID: 1849803901}
   - component: {fileID: 1849803905}
-  - component: {fileID: 1849803906}
   m_Layer: 5
   m_Name: BulgariaPadCanvasTest
   m_TagString: Untagged
@@ -1768,19 +1802,8 @@ MonoBehaviour:
   ButtonAPosition: {x: 0, y: 0}
   ButtonB: 0
   ButtonBPosition: {x: 0, y: 0}
-  DebugText: {fileID: 1454224318}
---- !u!114 &1849803906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1849803900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73eb4c407c5582b438d40bc81b4a0f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   TouchPositions:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}
+  DebugText: {fileID: 1454224318}
