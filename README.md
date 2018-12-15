@@ -9,19 +9,23 @@ unitypackageをダウンロードしてインポートする<br>
 Nimushiki/Bulgariapad/Prefab/BulgariaPadCanvasを任意のシーンに配置する<br>
 Nimushiki/Bulgariapad/Prefab/BulgariaPadCanvasTestも配置すると便利です<br>
 <br>
-using Nimushiki.BulgariaPad; と書く<br>
+各種データが欲しいcsファイルの先頭でusing Nimushiki.BulgariaPad; と書く<br>
 
-## 使い方
-キャリブレーションを実装する（BulgariaPadInitializer.StartCalibration()）<br>
-　※ただしメッセージ表示はいい実装が出来てないのでBulgariaPadInitializerをいじって下さい<br>
-ボタン位置の初期化をする<br>
-　解像度から適当に計算する処理を用意してあります（BulgariaPadInput.ResetPosition()）<br>
-BulgariaPadInputの値を使って各自の入力処理を実装する<br>
-　Sampleシーンに実装例がありますので参考にして下さい<br>
+## 使う時に必要な項目
+（必須）キャリブレーションを実装する<br>
+　無限に存在する画面サイズ・解像度に対応するために必須です。<br>
+　プレイヤーが実機でボタン等から呼び出せるようにして、BulgariaPadInitializer.StartCalibration()を実行して下さい。<br>
+　※メッセージ表示はBulgariaPadInitializerを各自書き換えて実装して下さい<br>
+（推奨）ボタン位置の初期化をする<br>
+　サンプルのシーンでは、起動時に解像度から適当に計算しています。<br>
+　SampleControllerのBulgariaPadInput.ResetPosition()<br>
+（各自）BulgariaPadInputの値を使って入力処理を実装する<br>
+　サンプルのシーンに実装例がありますので参考にして下さい<br>
 　BulgariaPadCanvasTest/SampleViewer　…　取得出来る値をインスペクターに表示してあります<br>
-　Test/SampleController　…　取得出来る値をいくつか利用したコントローラーの例<br>
+　Test/SampleController　…　取得出来る値をいくつか利用したコントローラーの例です<br>
 
 ## 主な機能
+・エディタ、実機どちらでも動きます
 BulgariaPadInput.ResetPosition()　…　画面の解像度からいい感じに初期位置を決める処理。なくてもOK<br>
 BulgariaPadInput.Vertical　…　アナログパッドの縦の入力具合。-1から1のfloat<br>
 BulgariaPadInput.Horizontal　…　アナログパッドの横の入力具合。-1から1のfloat<br>
@@ -32,7 +36,10 @@ BulgariaPadInput.ButtonA　…　Aボタンが押されているか。bool<br>
 BulgariaPadInput.ButtonB　…　Bボタンが押されているか。bool<br>
 BulgariaPadInput.ButtonAPosition …　Aボタンの座標。vector2<br>
 BulgariaPadInput.ButtonBPosition …　Bボタンの座標。vector2<br>
-以下、キャリブレーションを自作する人向け<br>
+
+## 細かい機能
+・UnityRemote使用時はマウス入力は出来ません。
+・キャリブレーションを自作する人向けのデータ<br>
 BulgariaPadInput.SetAnalogPadRadius(float rad)<br>
 BulgariaPadInput.SetAnalogPadPosition(Vector2 pos)<br>
 BulgariaPadInput.SetButtonAPosition(Vector2 pos)<br>
@@ -47,9 +54,10 @@ SampleViewer　BulgariaPadInputのデータを可視化するだけのスクリ�
 ImageMover　ボタン画像の移動だけ担当。なくても動くけど分かりにくい。
 
 ## 既知の問題点
-マルチタッチに対応していない
+
 
 ## 履歴
+2018年12月15日　ver0.1.0　アプデ<br>
 2018年12月3日　ver0.0.2　バグ？修正<br>
  unitypackageに不足していたファイルを追加<br>
 2018年12月2日　ver0.0.1　初版公開
