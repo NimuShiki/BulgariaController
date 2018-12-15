@@ -7,36 +7,26 @@ namespace Nimushiki.BulgariaPad
 {
 	public static class BulgariaPadInput
 	{
-		private static float vertical;
-
 		public static float Vertical
 		{
 			get
 			{
-				vertical = CalcuVertical();
-				return vertical;
+				return CalcuVertical();
 			}
-
 		}
-
-		private static float horizontal;
-
 		public static float Horizontal
 		{
 			get
 			{
-				horizontal = CalcuHorizontal();
-				return horizontal;
+				return CalcuHorizontal();
 			}
 		}
 
-		private static bool onAnalogPad;
 		public static bool OnAnalogPad
 		{
 			get
 			{
-				onAnalogPad = CheckOnAnalogPad();
-				return onAnalogPad;
+				return CheckOnAnalogPad();
 			}
 		}
 
@@ -126,56 +116,32 @@ namespace Nimushiki.BulgariaPad
 
 		static float CalcuVertical()
 		{
-			float v = 0;
 			if (!TouchUtil.TouchCount.Equals(0))
 			{
-				v = TouchUtil.TouchPosition.y - analogPadPos.y;
+				float v = 0;
+				v = TouchUtil.TouchPositions[0].y - analogPadPos.y;
 				v /= analogPadRadius;
 				v = Mathf.Clamp(v, -1, 1);
+				return v;
 			}
-			return v;
+			return 0;
 		}
 
 		static float CalcuHorizontal()
 		{
-			float h = 0;
-			if (!TouchUtil.TouchCount.Equals(0))
+			Vector2 pos = ReturnTouchPositionWithinRange(analogPadPos, analogPadRadius);
+			if (pos != Vector2.zero)
 			{
-				h = TouchUtil.TouchPosition.x - analogPadPos.x;
-				h /= analogPadRadius;
-				h = Mathf.Clamp(h, -1, 1);
+				pos = (pos - analogPadPos) / analogPadRadius;
+				return Mathf.Clamp(pos.x, -1, 1);
 			}
-			return h;
-		}
-
-		static void UpdateOnAnalogPad(float rad)
-		{
-			//パッド範囲のバッファ設定　変えられるようにするかも
-			if (Mathf.Abs(rad) > 1.5f)
-			{
-				onAnalogPad = false;
-			}
-			else
-			{
-				onAnalogPad = true;
-			}
+			return 0;
 		}
 
 		static bool CheckOnAnalogPad()
 		{
 			bool isOn = true;
-			if (TouchUtil.TouchCount.Equals(0))
-			{
-				isOn = false;
-			}
-			else
-			{
-				float h = (TouchUtil.TouchPosition.x - analogPadPos.x) / analogPadRadius;
-				if (Mathf.Abs(h) > 1.5f) isOn = false;
-				float v = (TouchUtil.TouchPosition.y - analogPadPos.y) / analogPadRadius;
-				if (Mathf.Abs(v) > 1.5f) isOn = false;
-			}
-
+			if (ReturnTouchPositionWithinRange(analogPadPos, analogPadRadius) == Vector2.zero) isOn = false;
 			return isOn;
 		}
 
@@ -183,35 +149,25 @@ namespace Nimushiki.BulgariaPad
 		static bool CheckOnButtonA()
 		{
 			bool isOn = true;
-			if (TouchUtil.TouchCount.Equals(0))
-			{
-				isOn = false;
-			}
-			else
-			{
-				float h = (TouchUtil.TouchPosition.x - buttonAPos.x) / buttonRadius;
-				if (Mathf.Abs(h) > 1) isOn = false;
-				float v = (TouchUtil.TouchPosition.y - buttonAPos.y) / buttonRadius;
-				if (Mathf.Abs(v) > 1) isOn = false;
-			}
+			if (ReturnTouchPositionWithinRange(buttonAPos, buttonRadius) == Vector2.zero) isOn = false;
 			return isOn;
 		}
 
 		static bool CheckOnButtonB()
 		{
 			bool isOn = true;
-			if (TouchUtil.TouchCount.Equals(0))
-			{
-				isOn = false;
-			}
-			else
-			{
-				float h = (TouchUtil.TouchPosition.x - buttonBPos.x) / buttonRadius;
-				if (Mathf.Abs(h) > 1) isOn = false;
-				float v = (TouchUtil.TouchPosition.y - buttonBPos.y) / buttonRadius;
-				if (Mathf.Abs(v) > 1) isOn = false;
-			}
+			if (ReturnTouchPositionWithinRange(buttonBPos, buttonRadius) == Vector2.zero) isOn = false;
 			return isOn;
+		}
+
+		static Vector2 ReturnTouchPositionWithinRange(Vector2 CheckPos, float CheckRadius)
+		{
+			for (int i = 0; i < TouchUtil.TouchCount; i++)
+			{
+				Vector2 distance = (TouchUtil.TouchPositions[i] - CheckPos) / CheckRadius;
+				if (Mathf.Abs(distance.magnitude) < 1) return TouchUtil.TouchPositions[i];
+			}
+			return Vector2.zero;
 		}
 	}
 }

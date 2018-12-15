@@ -33,6 +33,7 @@ public class SampleController : MonoBehaviour
 
 		//値を監視しないで、Buttonコンポーネントに実装してもOK
 		if (BulgariaPadInput.ButtonA) transform.RotateAround(transform.position, new Vector3(0, 10, 0), 5);
+		if (BulgariaPadInput.ButtonB) transform.RotateAround(transform.position, new Vector3(0, 10, 0), -5);
 
 	}
 }

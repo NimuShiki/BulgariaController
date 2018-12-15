@@ -59,7 +59,7 @@ namespace Nimushiki.BulgariaPad
 
 				if (TouchUtil.TouchCount == 1)
 				{
-					TouchPos = TouchUtil.TouchPosition;
+					TouchPos = TouchUtil.TouchPositions[0];
 					if (TouchPos.magnitude == 0) yield return null;
 					//初回調整
 					if (VMax == 0)
@@ -103,7 +103,7 @@ namespace Nimushiki.BulgariaPad
 			{
 				if (TouchUtil.TouchCount == 1)
 				{
-					TouchPos = TouchUtil.TouchPosition;
+					TouchPos = TouchUtil.TouchPositions[0];
 					if (TouchPos.magnitude == 0) yield return null; //何の条件だっけ…
 					if ((TouchPos - BulgariaPadInput.AnalogPadPos).magnitude > 1) yield return null;
 					//雑にパッドとボタンを切り分け
@@ -129,7 +129,7 @@ namespace Nimushiki.BulgariaPad
 			{
 				if (TouchUtil.TouchCount == 1)
 				{
-					TouchPos = TouchUtil.TouchPosition;
+					TouchPos = TouchUtil.TouchPositions[0];
 					if (TouchPos.magnitude == 0) yield return null;
 					if ((TouchPos - BulgariaPadInput.AnalogPadPos).magnitude > 1) yield return null;
 					//雑にパッドとボタンを切り分け

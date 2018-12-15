@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Nimushiki.BulgariaPad
@@ -9,6 +10,17 @@ namespace Nimushiki.BulgariaPad
 	/// </summary>
 	public static class TouchUtil
 	{
+		static bool isRemote
+		{
+			get
+			{
+#if UNITY_EDITOR
+				return UnityEditor.EditorApplication.isRemoteConnected;
+#else
+            	return false;
+#endif
+			}
+		}
 
 		public static int TouchCount
 		{
@@ -17,37 +29,37 @@ namespace Nimushiki.BulgariaPad
 				return GetTouchCount();
 			}
 		}
-		public static Vector3 TouchPosition
+		public static Vector2[] TouchPositions
 		{
 			get
 			{
-				return GetTouchPosition();
+				return GetTouchPositions();
 			}
 		}
 
 
-		static Vector3 GetTouchPosition()
+		static Vector2[] GetTouchPositions()
 		{
-			if (Application.isEditor)
+			Vector2[] poss = new Vector2[4];
+
+			if (Application.isEditor && !isRemote)
 			{
-				if (Input.GetMouseButton(0)) return Input.mousePosition;
+				if (Input.GetMouseButton(0)) poss[0] = Input.mousePosition;
 			}
 			else
 			{
-				if (Input.touchCount > 0)
+				for (int i = 0; i < Input.touchCount; i++)
 				{
-					Touch touch = Input.GetTouch(0);
-					return touch.position;
+					poss[i] = Input.touches[i].position;
 				}
-
 			}
-			return Vector3.zero;
+			return poss;
 		}
 
 		static int GetTouchCount()
 		{
 			int count = 0;
-			if (Application.isEditor)
+			if (Application.isEditor && !isRemote)
 			{
 				if (Input.GetMouseButton(0)) count = 1;
 			}
