@@ -5,6 +5,13 @@ using System.Linq;
 
 namespace Nimushiki.BulgariaPad
 {
+
+	public enum ButtonState {
+		DOWN,
+		UP,
+		PUSHING
+	}
+
 	public static class BulgariaPadInput
 	{
 		public static float Vertical
@@ -39,6 +46,12 @@ namespace Nimushiki.BulgariaPad
 		{
 			get { return CheckOnButtonA(); }
 		}
+		public static bool ButtonADown {
+			get { return CheckOnButtonADown (); }
+		}
+		public static bool ButtonAUp {
+			get { return CheckOnButtonAUp (); }
+		}
 		private static Vector2 buttonAPos;
 		public static Vector2 ButtonAPosition
 		{
@@ -48,6 +61,12 @@ namespace Nimushiki.BulgariaPad
 		public static bool ButtonB
 		{
 			get { return CheckOnButtonB(); }
+		}
+		public static bool ButtonBDown {
+			get { return CheckOnButtonBDown (); }
+		}
+		public static bool ButtonBUp {
+			get { return CheckOnButtonBUp (); }
 		}
 		private static Vector2 buttonBPos;
 		public static Vector2 ButtonBPosition
@@ -121,6 +140,18 @@ namespace Nimushiki.BulgariaPad
 			return isOn;
 		}
 
+		static bool CheckOnButtonADown () {
+			bool isOn = true;
+			if (ReturnTouchPositionWithinRange (buttonAPos, buttonRadius, ButtonState.DOWN) == Vector2.zero) isOn = false;
+			return isOn;
+		}
+
+		static bool CheckOnButtonAUp () {
+			bool isOn = true;
+			if (ReturnTouchPositionWithinRange (buttonAPos, buttonRadius, ButtonState.UP) == Vector2.zero) isOn = false;
+			return isOn;
+		}
+
 		static bool CheckOnButtonB()
 		{
 			bool isOn = true;
@@ -128,12 +159,39 @@ namespace Nimushiki.BulgariaPad
 			return isOn;
 		}
 
-		static Vector2 ReturnTouchPositionWithinRange(Vector2 CheckPos, float CheckRadius)
-		{
-			for (int i = 0; i < TouchUtil.TouchCount; i++)
-			{
+		static bool CheckOnButtonBDown () {
+			bool isOn = true;
+			if (ReturnTouchPositionWithinRange (buttonBPos, buttonRadius, ButtonState.DOWN) == Vector2.zero) isOn = false;
+			return isOn;
+		}
+
+		static bool CheckOnButtonBUp () {
+			bool isOn = true;
+			if (ReturnTouchPositionWithinRange (buttonBPos, buttonRadius, ButtonState.UP) == Vector2.zero) isOn = false;
+			return isOn;
+		}
+
+		static Vector2 ReturnTouchPositionWithinRange (Vector2 CheckPos, float CheckRadius, ButtonState state = ButtonState.PUSHING) {
+			for (int i = 0; i < TouchUtil.TouchCount; i++) {
 				Vector2 distance = (TouchUtil.TouchPositions[i] - CheckPos) / CheckRadius;
-				if (Mathf.Abs(distance.magnitude) < 1) return TouchUtil.TouchPositions[i];
+				if (Mathf.Abs (distance.magnitude) < 1.5f) {
+					switch (state) {
+						case ButtonState.DOWN:
+							if (TouchUtil.IsTouchDown (i)) {
+								return TouchUtil.TouchPositions[i];
+							}
+							break;
+						case ButtonState.UP:
+							if (TouchUtil.IsTouchUp (i)) {
+								return TouchUtil.TouchPositions[i];
+							}
+							break;
+						case ButtonState.PUSHING:
+							return TouchUtil.TouchPositions[i];
+							break;
+					}
+
+				}
 			}
 			return Vector2.zero;
 		}
