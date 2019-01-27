@@ -33,13 +33,17 @@ BulgariaPadInput.OnAnalogPad　…　タッチ位置がアナログパッドの�
 BulgariaPadInput.AnalogPadRadius …　アナログパッドの半径。float<br>
 BulgariaPadInput.AnalogPadPos　…　アナログパッドの中心座標。vector2<br>
 BulgariaPadInput.ButtonA　…　Aボタンが押されているか。bool<br>
-BulgariaPadInput.ButtonB　…　Bボタンが押されているか。bool<br>
+BulgariaPadInput.ButtonADown　…　Aボタンが押された瞬間だけtrue<br>
+BulgariaPadInput.ButtonAUp　…　Aボタンが離された瞬間だけtrue<br>
 BulgariaPadInput.ButtonAPosition …　Aボタンの座標。vector2<br>
+BulgariaPadInput.ButtonB　…　Bボタンが押されているか。bool<br>
+BulgariaPadInput.ButtonBDown　…　Bボタンが押された瞬間だけtrue<br>
+BulgariaPadInput.ButtonBUp　…　Bボタンが離された瞬間だけtrue<br>
 BulgariaPadInput.ButtonBPosition …　Bボタンの座標。vector2<br>
 
 ## 細かい機能
-・UnityRemote使用時はマウス入力は出来ません。
-・キャリブレーションを自作する人向けのデータ<br>
+・UnityRemote使用時はマウス入力は出来ません。<br>
+・以下、キャリブレーションを自作する人向けのデータ<br>
 BulgariaPadInput.SetAnalogPadRadius(float rad)<br>
 BulgariaPadInput.SetAnalogPadPosition(Vector2 pos)<br>
 BulgariaPadInput.SetButtonAPosition(Vector2 pos)<br>
@@ -57,6 +61,7 @@ ImageMover　ボタン画像の移動だけ担当。なくても動くけど分�
 
 
 ## 履歴
+2019年1月28日　ver0.2.0　アプデ<br>
 2018年12月15日　ver0.1.0　アプデ<br>
 2018年12月3日　ver0.0.2　バグ？修正<br>
  unitypackageに不足していたファイルを追加<br>
