@@ -25,7 +25,7 @@ Nimushiki/Bulgariapad/Prefab/BulgariaPadCanvasTestも配置すると便利です
 　Test/SampleController　…　取得出来る値をいくつか利用したコントローラーの例です<br>
 
 ## 主な機能
-・エディタ、実機どちらでも動きます
+・エディタ、実機どちらでも動きます<br>
 BulgariaPadInput.ResetPosition()　…　画面の解像度からいい感じに初期位置を決める処理。なくてもOK<br>
 BulgariaPadInput.Vertical　…　アナログパッドの縦の入力具合。-1から1のfloat<br>
 BulgariaPadInput.Horizontal　…　アナログパッドの横の入力具合。-1から1のfloat<br>
