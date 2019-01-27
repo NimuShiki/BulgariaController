@@ -70,6 +70,28 @@ namespace Nimushiki.BulgariaPad
 			return count;
 		}
 
+		public static bool IsTouchUp (int num) {
+			if (Application.isEditor && !isRemote) {
+				return Input.GetMouseButtonUp (0);
+			} else {
+				if (GetTouchCount () < num) {
+					return false;
+				}
+				return Input.GetTouch (num).phase == TouchPhase.Ended;
+			}
+		}
+
+		public static bool IsTouchDown (int num) {
+			if (Application.isEditor && !isRemote) {
+				return Input.GetMouseButtonDown (0);
+			} else {
+				if (GetTouchCount () < num) {
+					return false;
+				}
+				return Input.GetTouch (num).phase == TouchPhase.Began;
+			}
+		}
+
 	}
 
 }
